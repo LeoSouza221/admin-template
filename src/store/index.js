@@ -7,9 +7,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    token: localStorage.getItem('token') || '',
+    token: localStorage.getItem('token') || null,
     status: '',
-    userType: '',
+    userType: null,
     msg: '',
     authRoutes: [],
     listaItensImpressao: [],
@@ -33,6 +33,7 @@ export default new Vuex.Store({
       state.status = '';
       state.token = '';
       state.authRoutes = [];
+      state.userType = null;
     },
     defineRoutes(state, rota) {
       state.authRoutes.push(rota);
@@ -78,6 +79,7 @@ export default new Vuex.Store({
     logout: ({ commit }) => {
       commit('authRequest');
       return new Promise((resolve) => {
+        console.log('aki');
         localStorage.removeItem('token');
         commit('logout');
         resolve();

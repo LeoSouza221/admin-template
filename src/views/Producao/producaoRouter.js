@@ -1,6 +1,7 @@
 export default [
   {
     path: '/producao',
+    name: 'Producao',
     component: () => import('./index.vue'),
     meta: {
       sidebar: {

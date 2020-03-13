@@ -1,6 +1,7 @@
 export default [
   {
     path: '/dashboard',
+    name: 'Dashboard',
     component: () => import('./index.vue'),
     meta: {
       sidebar: {

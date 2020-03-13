@@ -54,6 +54,9 @@ export default {
       component: Home,
       name: 'Home',
       children: [],
+      meta: {
+        props: { roles: ['admin', 'outro'] },
+      },
     },
     rules: {
       email: [
