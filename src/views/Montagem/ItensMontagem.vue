@@ -275,11 +275,14 @@ export default {
       inset 0 10px 20px rgba(0,0,0,0.23),
       inset 6px 6px 6px rgba(0,0,0,0.23);
     transition: width 1s cubic-bezier(0.075, 0.82, 0.165, 1);
-    background: honeydew;
+    background: white;
+    background-image: linear-gradient(rgba(97, 97, 97, 0.7) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(97, 97, 97, 0.7) 1px, transparent 1px);
+    background-size: 10px 10px;
   }
 
   .linha-vertical {
-    width: 2px;
+    width: 1px;
     height: 100%;
     border: dashed 2px grey;
   }
