@@ -1,18 +1,24 @@
-<template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+<template lang="pug">
+  .home
+    header-layout
+    p-navbar
+    v-content
+      v-slide-y-transition(mode="out-in")
+        router-view
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue';
+import HeaderLayout from '../components/layouts/Header.vue';
+import FooterLayout from '../components/layouts/Footer.vue';
+import NavBar from '../components/layouts/Navbar.vue';
 
 export default {
-  name: 'Home',
+  name: 'HomePage',
+
   components: {
-    HelloWorld,
+    HeaderLayout,
+    FooterLayout,
+    'p-navbar': NavBar,
   },
 };
 </script>
