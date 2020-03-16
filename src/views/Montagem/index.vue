@@ -56,21 +56,15 @@ export default {
   created() {
     this.itemsParaMontagem = this.$store.state.listaItensImpressao;
     EventBus.$on('alterar-estado-navbar', this.fecharNavbar);
-    EventBus.$on('alterar-items-para-impressao', this.alterarItemsMontagem);
   },
 
   beforeDestroy() {
     EventBus.$off('alterar-estado-navbar');
-    EventBus.$off('alterar-items-para-impressao');
   },
 
   methods: {
     fecharNavbar(condicao) {
       this.drawer = condicao;
-    },
-
-    alterarItemsMontagem(item) {
-      console.log(item);
     },
   },
 };

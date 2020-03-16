@@ -70,7 +70,7 @@ export default {
   }),
 
   methods: {
-    login() {
+    async login() {
       this.$store.dispatch('login', this.userType)
         .then(() => {
           const childrenRoutes = this.$store.state.authRoutes;
@@ -83,6 +83,8 @@ export default {
       this.homeRoute.children = childrenRoutes;
       this.$router.addRoutes([this.homeRoute]);
       this.$router.push('/home');
+
+      this.$store.dispatch('abrirAlerta', { mensagem: 'Deu Certo', cor: 'error', snackbar: true });
     },
   },
 };

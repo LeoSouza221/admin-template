@@ -8,9 +8,11 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     token: localStorage.getItem('token') || null,
-    status: '',
     userType: null,
-    msg: '',
+    snackbar: false,
+    status: '',
+    mensagem: '',
+    cor: 'success',
     authRoutes: [],
     listaItensImpressao: [],
   },
@@ -49,6 +51,18 @@ export default new Vuex.Store({
     limparLista(state) {
       state.listaItensImpressao = [];
     },
+    exibirMensagem(state, mensagem) {
+      state.mensagem = mensagem;
+    },
+    mudarCor(state, cor) {
+      state.cor = cor;
+    },
+    abrirSnackbar(state, estado) {
+      state.snackbar = estado;
+    },
+    fecharSnackbar(state) {
+      state.snackbar = false;
+    },
   },
   actions: {
     login: ({ commit, dispatch }, user) => {
@@ -78,8 +92,8 @@ export default new Vuex.Store({
 
     logout: ({ commit }) => {
       commit('authRequest');
+
       return new Promise((resolve) => {
-        console.log('aki');
         localStorage.removeItem('token');
         commit('logout');
         resolve();
@@ -113,12 +127,30 @@ export default new Vuex.Store({
       commit('limparLista');
       resolve();
     }),
+
+    abrirAlerta: ({ commit, dispatch }, parametros) => new Promise((resolve) => {
+      const { mensagem, cor, snackbar } = parametros;
+
+      commit('exibirMensagem', mensagem);
+      commit('mudarCor', cor);
+      commit('abrirSnackbar', snackbar);
+
+      setTimeout(() => {
+        dispatch('fecharAlerta');
+      }, 5000);
+
+      resolve();
+    }),
+
+    fecharAlerta: ({ commit }) => new Promise((resolve) => {
+      commit('fecharSnackbar');
+
+      resolve();
+    }),
   },
   getters: {
     isAuthenticated: (state) => !!state.token,
     authStatus: (state) => state.status,
     hasPermission: (state) => (permission) => permission.includes(state.userType),
-  },
-  modules: {
   },
 });

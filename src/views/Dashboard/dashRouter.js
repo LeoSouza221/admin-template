@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/dashboard',
+    path: '/dashboard/:id',
     name: 'Dashboard',
     component: () => import('./index.vue'),
     meta: {

@@ -1,6 +1,6 @@
 export default [
   {
-    path: '/producao',
+    path: '/producao/:id',
     name: 'Producao',
     component: () => import('./index.vue'),
     meta: {
