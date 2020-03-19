@@ -8,18 +8,39 @@
     width="300"
   )
     v-list(nav)
-      v-list-item.my-3(
-        link
-        dense
-        v-for="item in itemsNavbar"
-        :key="item.meta.sidebar.title"
-        :to='item.path'
-        active-class="white--text"
-      )
-        v-list-item-icon
-          v-icon {{ item.meta.sidebar.icon }}
-        v-list-item-content
-          v-list-item-title {{ item.meta.sidebar.title }}
+      template(v-for="item in itemsNavbar")
+        v-list-item.my-3(
+          link
+          :key="item.meta.sidebar.title"
+          :to='item.path'
+          active-class="white--text"
+          v-if="!item.children"
+        )
+          v-list-item-icon
+            v-icon {{ item.meta.sidebar.icon }}
+          v-list-item-content
+            v-list-item-title {{ item.meta.sidebar.title }}
+        v-list-group.my-3(
+          :key="item.meta.sidebar.title"
+          active-class="white--text"
+          v-else
+          v-model="item.active"
+          :prepend-icon="item.meta.sidebar.icon"
+          no-action
+        )
+          template(v-slot:activator)
+            v-list-item-content
+              v-list-item-title {{ item.meta.sidebar.title }}
+          v-list-item.my-3(
+            link
+            dense
+            v-for="subItem in item.children"
+            :key="subItem.meta.sidebar.title"
+            :to='subItem.path'
+            active-class="white--text"
+          )
+            v-list-item-content
+              v-list-item-title {{ subItem.meta.sidebar.title }}
 </template>
 
 <script>

@@ -1,14 +1,15 @@
+import users from '@/utils/users';
+
 export default [
   {
-    path: '/dashboard/:id',
-    name: 'Dashboard',
+    path: '/dashboard/:id?',
     component: () => import('./index.vue'),
     meta: {
       sidebar: {
         icon: 'mdi-chart-bell-curve',
         title: 'Dashboards',
       },
-      props: { roles: ['admin'] },
+      props: { roles: users.ADMIN },
     },
   },
 ];

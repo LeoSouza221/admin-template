@@ -49,13 +49,16 @@
               v-for="(pedido, index) in item.itemsOrdem"
               :key="index"
             )
-              div(style="display: inline-flex")
+              div(style="display: inline-flex; width: 100%")
                 v-checkbox(
                   v-model="pedido.selecionado"
                   :disabled="pedido.status === 'Finalizado'"
                   @click.stop="marcarSelecionados(pedido, item)"
                 )
-                v-card(width="200" height="200")
+                v-card(
+                  width="100%"
+                  height="200"
+                )
                   v-card-text(style="text-align: center")
                     h3 Pedido {{ pedido.nome }}
                   v-card-text
@@ -65,7 +68,7 @@
 
 <script>
 export default {
-  name: 'TabelaProducao',
+  name: 'TabelaPreImpressao',
 
   data: () => ({
     selecionados: [],

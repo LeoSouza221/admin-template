@@ -19,7 +19,13 @@
             v-icon mdi-menu
           v-toolbar-title Montar Impressão
           v-spacer
-          v-btn(
+          v-btn.primary.mx-1(
+            icon
+            dark
+            @click="salvar"
+          )
+            v-icon mdi-content-save
+          v-btn.mx-1(
             icon
             dark
             @click="dialog = !dialog"
@@ -65,6 +71,10 @@ export default {
   methods: {
     fecharNavbar(condicao) {
       this.drawer = condicao;
+    },
+
+    salvar() {
+      this.$router.push('/producao/impressao');
     },
   },
 };

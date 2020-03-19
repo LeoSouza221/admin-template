@@ -42,7 +42,6 @@ export default {
 
 <style scoped>
   .login-container {
-    width: 100vw;
     height: 100%;
     position: relative;
     overflow: hidden;

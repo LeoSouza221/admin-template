@@ -37,8 +37,8 @@ export default new Vuex.Store({
       state.authRoutes = [];
       state.userType = null;
     },
-    defineRoutes(state, rota) {
-      state.authRoutes.push(rota);
+    defineRoutes(state, rotas) {
+      state.authRoutes = rotas;
     },
     listaAdicionar(state, pedido) {
       state.listaItensImpressao.push(pedido);
@@ -86,7 +86,10 @@ export default new Vuex.Store({
         commit('authSuccessToken', '21232342');
         commit('defineUser', user);
         dispatch('filtrarRotas', routes)
-          .then(() => resolve());
+          .then((rotasFiltradas) => {
+            commit('defineRoutes', rotasFiltradas);
+            resolve();
+          });
       });
     },
 
@@ -100,13 +103,21 @@ export default new Vuex.Store({
       });
     },
 
-    filtrarRotas: ({ commit, getters }, rotas) => new Promise((resolve) => {
+    filtrarRotas: ({ getters, dispatch }, rotas) => new Promise((resolve) => {
+      const teste = [];
       rotas.forEach((rota) => {
-        if (getters.hasPermission(rota.meta.props.roles)) {
-          commit('defineRoutes', rota);
+        if (rota.children) {
+          const { children, ...infos } = rota;
+          dispatch('filtrarRotas', rota.children)
+            .then((rotasFiltradas) => {
+              infos.children = rotasFiltradas;
+              teste.push(infos);
+            });
+          return;
         }
+        if (getters.hasPermission(rota.meta.props.roles)) teste.push(rota);
       });
-      resolve();
+      resolve(teste);
     }),
 
     imprimir: ({ commit }, info) => new Promise((resolve) => {

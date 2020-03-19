@@ -8,7 +8,10 @@
         align="center"
       )
         v-col(
-          cols="3"
+          cols="12"
+          sm="6"
+          md="4"
+          lg="3"
           v-for="(item, index) in valoresCards" :key="index"
         )
           card(:valor="item.valor" :texto="item.texto")
