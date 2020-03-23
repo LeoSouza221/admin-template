@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-card(height="200" width="200")
+  v-card(height="200" width="100%")
     v-row(justify="center")
       v-col.cardValor(cols="12")
         span.primary--text {{ valor }}

@@ -51,7 +51,7 @@
 import Montagem from '../Montagem/index.vue';
 
 export default {
-  name: 'ItensSelecionadosProducao',
+  name: 'ItensSelecionadosPreImpressao',
 
   components: {
     Montagem,
