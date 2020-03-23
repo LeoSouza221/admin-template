@@ -18,7 +18,7 @@ export default [
           sidebar: {
             title: 'Pré-impressão',
           },
-          props: { roles: users.IMPRESSOR },
+          props: { roles: users.IMPRESSOR() },
         },
       },
       {
@@ -28,37 +28,7 @@ export default [
           sidebar: {
             title: 'Impressão',
           },
-          props: { roles: users.GERENTE },
-        },
-      },
-      {
-        path: '/producao/acabamento',
-        component: () => import('../Acabamento/index.vue'),
-        meta: {
-          sidebar: {
-            title: 'Acabamento',
-          },
-          props: { roles: users.ACABAMENTO },
-        },
-      },
-      {
-        path: '/producao/entrega',
-        component: () => import('../Entrega/index.vue'),
-        meta: {
-          sidebar: {
-            title: 'Entrega',
-          },
-          props: { roles: users.RECEPCAO },
-        },
-      },
-      {
-        path: '/producao/instalacao',
-        component: () => import('../Instalacao/index.vue'),
-        meta: {
-          sidebar: {
-            title: 'Instalação',
-          },
-          props: { roles: users.INSTALACAO },
+          props: { roles: users.GERENTE() },
         },
       },
     ],

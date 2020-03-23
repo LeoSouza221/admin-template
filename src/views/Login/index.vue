@@ -2,14 +2,21 @@
   .login-container
     layout-header
     v-row(align="center" justify="center" style="height: 100%")
-      v-card.elevation-10(
-        width="350"
-        height="370"
-        flat
-      )
-        v-toolbar.transparent(flat height="50")
-          v-toolbar-title Login
-        LoginForm
+      .d-flex.flex-column
+        v-card.elevation-10(
+          width="350"
+          height="370"
+          flat
+        )
+          v-toolbar.transparent(flat height="50")
+            v-toolbar-title Login
+          login-form
+        .column-list.ma-3
+          h4 Usuarios:
+          ul
+            li admin
+            li gerente
+            li impressor
     layout-footer
 </template>
 
@@ -45,5 +52,9 @@ export default {
     height: 100%;
     position: relative;
     overflow: hidden;
+  }
+
+  .column-list ul {
+    columns: 3;
   }
 </style>

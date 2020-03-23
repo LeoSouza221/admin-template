@@ -9,7 +9,7 @@ export default [
         icon: 'mdi-chart-bell-curve',
         title: 'Dashboards',
       },
-      props: { roles: users.ADMIN },
+      props: { roles: users.ADMIN() },
     },
   },
 ];

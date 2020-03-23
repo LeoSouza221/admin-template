@@ -26,7 +26,7 @@
                 v-btn.primary(
                   rounded
                   dark
-                  height="50"
+                  height="40"
                   width="200"
                   to="/"
                 ) Enviar
